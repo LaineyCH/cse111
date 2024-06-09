@@ -29,7 +29,7 @@ while True:
     aspect = int(input("Please enter the tire's aspect ratio (eg 60): "))
     diameter = int(input("Please enter the tire's diameter in inches (eg 15): "))
 
-    #get price for width (165-385)
+    #get price for widths (165-275)
     if width == 165:
         if aspect == 65:
             if diameter == 14:
