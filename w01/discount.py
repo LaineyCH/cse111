@@ -25,7 +25,7 @@ today = date.today()
 weekday = today.weekday()
 discount = 0
 
-if weekday == 5 or weekday == 2:
+if weekday == 1 or weekday == 2:
     if subtotal >= 50:
         discount = subtotal * 0.1
         subtotal -= discount
