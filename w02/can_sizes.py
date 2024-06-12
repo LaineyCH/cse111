@@ -20,11 +20,13 @@ def main():
         {"name": "#303", "radius": 8.10, "height": 11.11, "cost": 0.42}
     ]
 
+    # set variables for the best cans efficiencies and names
     top_storage_effeciency = 0
     top_storage_effeciency_can = ""
     top_cost_effeciency = 0
     top_cost_effeciency_can = ""
 
+    # loop through list of cans, find  each can's storage and cost efficiency, and print, along with name.
     for can in can_library:
         name = can["name"]
         # Core Requirements:
@@ -52,14 +54,35 @@ def main():
     print()
 
 def compute_volume(radius, height):
+    """
+    calculate the volume of a cylinder
+    Parameters:
+        radius: the radius of the cylinder
+        height: the height of the cylinder
+    Return: volume: the volume of the cylinder
+    """
     volume =  math.pi * (radius**2) * height
     return volume
 
 def compute_surface_area(radius, height):
+    """
+    calculate the surface area of a cylinder
+    Parameters:
+        radius: the radius of the cylinder
+        height: the height of the cylinder
+    Return: volume: the surface area of the cylinder
+    """
     surface_area = 2 * math.pi * radius * (radius + height)
     return surface_area
 
 def compute_storage_efficiency(radius, height):
+    """
+    calculate the storage efficiency of a metal can
+    Parameters:
+        radius: the radius of the can
+        height: the height of the can
+    Return: volume: the storage efficiency of the can
+    """
     volume = compute_volume(radius, height)
     surface_area = compute_surface_area(radius, height)
     storage_efficiency = volume / surface_area
@@ -67,6 +90,12 @@ def compute_storage_efficiency(radius, height):
 
 def compute_cost_efficiency(radius, height, cost):
     """
+    calculate the cost efficiency of a metal can
+    Parameters:
+        radius: the radius of the can
+        height: the height of the can
+        cost: the cost of the can
+    Return: volume: the cost efficiency of the can
     """
     volume = compute_volume(radius, height)
     cost_efficiency = volume / cost
