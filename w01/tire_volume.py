@@ -550,7 +550,7 @@ if price > 0:
     # ask is customer would like to purchase
     # if yes, ask for quantity, calculate and display total, collect customer phone number, save additional info to string.
     # if no, send message and end. Add "no sale" to string.
-    answer = input("Wold you like to place an order? y/n: ")
+    answer = input("Would you like to place an order? y/n: ")
     if answer == "y" or answer == "Y" or answer == "yes" or answer == "Yes" or answer == "YES":
         quantity = int(input("Please enter the quanity of tires to order: "))
         total_cost = price * quantity
