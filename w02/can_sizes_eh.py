@@ -25,6 +25,8 @@ def main():
     top_storage_effeciency_can = ""
     top_cost_effeciency = 0
     top_cost_effeciency_can = ""
+    
+    print()
 
     # loop through list of cans, find  each can's storage and cost efficiency, and print, along with name.
     for can in can_library:
@@ -35,7 +37,7 @@ def main():
         # print(f"{name} - Volume:{volume: .2f} Surface Area:{surface_area: .2f}")
         storage_efficiency = compute_storage_efficiency(can["radius"], can["height"])
         cost_efficiency = compute_cost_efficiency(can["radius"], can["height"], can["cost"])
-        print(f"{name} - Storage Efficiency:{storage_efficiency: .2f} Cost Efficiency:{cost_efficiency: .2f}")
+        print(f"{name} - Storage Efficiency:{storage_efficiency: .2f} Cost Efficiency:{cost_efficiency: .0f}")
         print()
 
         # find and store the can with the greatest storage efficency
