@@ -57,10 +57,11 @@ def compute_volume(radius, height):
     """
     calculate the volume of a cylinder
     Parameters:
-        radius: the radius of the cylinder
-        height: the height of the cylinder
+        radius: the radius of the cylinder in cm
+        height: the height of the cylinder in cm
     Return: volume: the volume of the cylinder
     """
+    # calculate and return the volume of the cylinder
     volume =  math.pi * (radius**2) * height
     return volume
 
@@ -68,36 +69,41 @@ def compute_surface_area(radius, height):
     """
     calculate the surface area of a cylinder
     Parameters:
-        radius: the radius of the cylinder
-        height: the height of the cylinder
-    Return: volume: the surface area of the cylinder
+        radius: the radius of the cylinder in cm
+        height: the height of the cylinder in cm
+    Return: volume: the surface area of the cylinder in cm**2
     """
+    # calculate and return the surface area of the cylinder
     surface_area = 2 * math.pi * radius * (radius + height)
     return surface_area
 
 def compute_storage_efficiency(radius, height):
     """
-    calculate the storage efficiency of a metal can
+    calculate the storage efficiency of a storage can
     Parameters:
         radius: the radius of the can
         height: the height of the can
-    Return: volume: the storage efficiency of the can
+    Return: volume: the storage efficiency of the can in cm**3
     """
+    # get the volume and surface area of the can
     volume = compute_volume(radius, height)
     surface_area = compute_surface_area(radius, height)
+    # calculate and return the storage efficiency
     storage_efficiency = volume / surface_area
     return storage_efficiency
 
 def compute_cost_efficiency(radius, height, cost):
     """
-    calculate the cost efficiency of a metal can
+    calculate the cost efficiency of a storage can
     Parameters:
-        radius: the radius of the can
-        height: the height of the can
-        cost: the cost of the can
+        radius: the radius of the can in cm
+        height: the height of the can in cm
+        cost: the cost per can in USD
     Return: volume: the cost efficiency of the can
     """
+    # get the volume of the can
     volume = compute_volume(radius, height)
+    # calculate and return the cost efficiency
     cost_efficiency = volume / cost
     return cost_efficiency
 
