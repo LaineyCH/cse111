@@ -21,17 +21,25 @@ def main():
 
 def make_sentence(quantity, tense):
     """
-    Return a sentence constructed from a fetched determiner, noun and verb.
+    Return a sentence constructed from:
+    {Determiner} {adjective} {noun} {prepositional_phrase} {adverb} {verb} {determiner} {adjective} {noun} {prepositional_phrase}.
     Parameters
         quantity: an integer.
         tense: "past", "present" or "future"
     Return
         sentence: a correctly constructed sentence
     """
-    determiner = get_determiner(quantity)
-    noun = get_noun(quantity)
+    determiner_1 = get_determiner(quantity)
+    adjective_1 = get_adjective()
+    noun_1 = get_noun(quantity)
+    prepositional_phrase_1 = get_prepositional_phrase(quantity)
+    adverb = get_adverb(tense)
     verb = get_verb(quantity, tense)
-    sentence = determiner.capitalize() + " " + noun + " " + verb + "."
+    determiner_2 = get_determiner(quantity)
+    adjective_2 = get_adjective()
+    noun_2 = get_noun(quantity)
+    prepositional_phrase_2 = get_prepositional_phrase(quantity)
+    sentence = determiner_1.capitalize() + " " + adjective_1 + " " + noun_1 + " " + prepositional_phrase_1 + " " + adverb + " " + verb + " " + determiner_2 + " " + adjective_2 + " " + noun_2 + " " + prepositional_phrase_2 + "."
     return sentence
 
 def get_determiner(quantity):
@@ -80,22 +88,17 @@ def get_noun(quantity):
     word = random.choice(words)
     return word
     
-
-def get_verb(quantity, tense):
-    """Return a randomly chosen verb. If tense is "past",
-    this function will return one of these ten verbs:
+def get_verb(quantity, tense, leading_adverb=True):
+    """Return a randomly chosen verb. If tense is "past", this function will return one of these ten verbs:
         "drank", "ate", "grew", "laughed", "thought",
         "ran", "slept", "talked", "walked", "wrote"
-    If tense is "present" and quantity is 1, this
-    function will return one of these ten verbs:
+    If tense is "present" and quantity is 1, this function will return one of these ten verbs:
         "drinks", "eats", "grows", "laughs", "thinks",
         "runs", "sleeps", "talks", "walks", "writes"
-    If tense is "present" and quantity is NOT 1,
-    this function will return one of these ten verbs:
+    If tense is "present" and quantity is NOT 1, this function will return one of these ten verbs:
         "drink", "eat", "grow", "laugh", "think",
         "run", "sleep", "talk", "walk", "write"
-    If tense is "future", this function will return one of
-    these ten verbs:
+    If tense is "future", this function will return one of these ten verbs:
         "will drink", "will eat", "will grow", "will laugh",
         "will think", "will run", "will sleep", "will talk",
         "will walk", "will write"
@@ -114,10 +117,67 @@ def get_verb(quantity, tense):
         else:
             words = ["drink", "eat", "grow", "laugh", "think", "run", "sleep", "talk", "walk", "write"]
     if tense == "future":
-        words = ["will drink", "will eat", "will grow", "will laugh",
-        "will think", "will run", "will sleep", "will talk",
-        "will walk", "will write"]
+        if leading_adverb:
+            words = ["drink", "eat", "grow", "laugh", "think", "run", "sleep", "talk", "walk", "write"]
+        else:
+            words = ["will drink", "will eat", "will grow", "will laugh", "will think", "will run", "will sleep", "will talk", "will walk", "will write"]
     # Randomly choose and return a verb.
+    word = random.choice(words)
+    return word
+
+def get_preposition():
+    """Return a randomly chosen preposition
+    from this list of prepositions:
+        "about", "above", "across", "after", "along",
+        "around", "at", "before", "behind", "below",
+        "beyond", "by", "despite", "except", "for",
+        "from", "in", "into", "near", "of",
+        "off", "on", "onto", "out", "over",
+        "past", "to", "under", "with", "without"
+    Return: a randomly chosen preposition.
+    """
+    words = ["about", "above", "across", "after", "along", "around", "at", "before", "behind", "below", "beyond", "by", "despite", "except", "for", "from", "in", "into", "near", "of", "off", "on", "onto", "out", "over", "past", "to", "under", "with", "without"]
+    # Randomly choose and return a preposition.
+    word = random.choice(words)
+    return word
+
+def get_prepositional_phrase(quantity):
+    """Build and return a prepositional phrase composed of three words: a preposition, a determiner, and a
+    noun by calling the get_preposition, get_determiner, and get_noun functions.
+    Parameter
+        quantity: an integer that determines if the
+            determiner and noun in the prepositional
+            phrase returned from this function should
+            be single or pluaral.
+    Return: a prepositional phrase.
+    """
+    preposition = get_preposition()
+    determiner = get_determiner(quantity)
+    noun = get_noun(quantity)
+    prepositional_phrase = preposition + " " + determiner + " " + noun
+    return prepositional_phrase
+
+def get_adverb(tense):
+    """Return a randomly chosen adverb from this list of adverbs:
+        "quickly", "sweetly", "calmly", "noisily", "slowly", "carefully"
+    Parameter: tense - if "future" will is added before the adverb (for the verb conjugation)
+    Return: a randomly chosen adverb.
+    """
+    if tense == "future":
+        words = ["will quickly", "will sweetly", "will calmly", "will noisily", "will slowly", "will carefully"]
+    else:
+        words = ["quickly", "sweetly", "calmly", "noisily", "slowly", "carefully"]
+    # Randomly choose and return a preposition.
+    word = random.choice(words)
+    return word
+
+def get_adjective():
+    """Return a randomly chosen adjective from this list of adjectives:
+        "red", "busy", "tiny", "blue", "large", "fluffy", "shiny"
+    Return: a randomly chosen adjective.
+    """
+    words = ["red", "busy", "tiny", "blue", "large", "fluffy", "shiny"]
+    # Randomly choose and return a preposition.
     word = random.choice(words)
     return word
 
