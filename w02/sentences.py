@@ -1,5 +1,5 @@
 """
-Generates simple English sentences, containing a capitalised determiner, a noun, a verb, and a full stop
+Generates English sentences, containing a determiners, adjectives, nouns, prepositional phrases, an adverb, and a verb;
 using a list of sentence characteristics to determine plurality and tense.
 """
 import random
@@ -34,7 +34,7 @@ def make_sentence(quantity, tense):
     noun_1 = get_noun(quantity)
     prepositional_phrase_1 = get_prepositional_phrase(quantity)
     adverb = get_adverb(tense)
-    verb = get_verb(quantity, tense)
+    verb = get_verb(quantity, tense, True)
     determiner_2 = get_determiner(quantity)
     adjective_2 = get_adjective()
     noun_2 = get_noun(quantity)
@@ -102,11 +102,13 @@ def get_verb(quantity, tense, leading_adverb=True):
         "will drink", "will eat", "will grow", "will laugh",
         "will think", "will run", "will sleep", "will talk",
         "will walk", "will write"
+    Unless, there is an adverb before the verb, then the "will" is dropped.
     Parameters
         quantity: an integer that determines if the
             returned verb is single or plural.
         tense: a string that determines the verb conjugation,
             either "past", "present" or "future".
+        leading_adverb: boolean. If true "will" is dropped from the future tense verb phrase.
     Return: a randomly chosen verb.
     """
     if tense == "past":
@@ -173,10 +175,10 @@ def get_adverb(tense):
 
 def get_adjective():
     """Return a randomly chosen adjective from this list of adjectives:
-        "red", "busy", "tiny", "blue", "large", "fluffy", "shiny"
+        "red", "busy", "tiny", "blue", "large", "fluffy", "shiny", "tall", "smart", "fast"
     Return: a randomly chosen adjective.
     """
-    words = ["red", "busy", "tiny", "blue", "large", "fluffy", "shiny"]
+    words = ["red", "busy", "tiny", "blue", "large", "fluffy", "shiny", "tall", "smart", "fast"]
     # Randomly choose and return a preposition.
     word = random.choice(words)
     return word
