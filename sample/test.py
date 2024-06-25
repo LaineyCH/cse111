@@ -1,98 +1,75 @@
-import random
-
+import math
 def main():
-    det = get_determiner(1)
-    verb = get_verb(1, "present")
-    noun = get_noun(1)
-    print(f"{det} {noun} {verb}.")
+# Name	Radius
+# (centimeters)	Height
+# (centimeters)	Cost per Can
+# (U.S. dollars)
+# #1 Picnic	6.83	10.16	$0.28
+# #1 Tall	7.78	11.91	$0.43
+# #2	   8.73	   11.59	    $0.45
+# #2.5	10.32	11.91	$0.61
+# #3 Cylinder	10.79	17.78	$0.86
+# #5	13.02	14.29	$0.83
+# #6Z	5.40	8.89	$0.22
+# #8Z short	6.83	7.62	$0.26
+# #10	15.72	17.78	$1.53
+# #211	6.83	12.38	$0.34
+# #300	7.62	11.27	$0.38
+# #303	8.10	11.11	$0.42
+    cans = [
+        ("#1 Picnic", 6.83, 10.16, 0.28),
+        ("#1 Tall", 7.78, 11.91, 0.43),
+        ("#2", 8.73, 11.59, 0.45),
+        ("#2.5", 10.32, 11.91, 0.61),
+        ("#3 Cylinder", 10.79, 17.78, 0.86),
+        ("#5", 13.02, 14.29, 0.83),
+        ("#6Z", 5.40, 8.89, 0.22),
+        ("#8Z short", 6.83, 7.62, 0.26),
+        ("#10", 15.72, 17.78, 1.53),
+        ("#211", 6.83, 12.38, 0.34),
+        ("#300", 7.62, 11.27, 0.38),
+        ("#303", 8.10, 11.11, 0.42)
+    ]
+    best_can_efficiency = 0
+    best_cost_efficiency = 999999
+    name_best_can_efficiency =''
+    name_best_cost_efficiency =''
 
-def get_determiner(quantity):
-    """Return a randomly chosen determiner. A determiner is
-    a word like "the", "a", "one", "some", "many".
-    If quantity is 1, this function will return either "a",
-    "one", or "the". Otherwise this function will return
-    either "some", "many", or "the".
-    Parameter
-        quantity: an integer.
-            If quantity is 1, this function will return a
-            determiner for a single noun. Otherwise this
-            function will return a determiner for a plural
-            noun.
-    Return: a randomly chosen determiner.
-    """
-    if quantity == 1:
-        words = ["a", "one", "the"]
-    else:
-        words = ["some", "many", "the"]
-    # Randomly choose and return a determiner.
-    word = random.choice(words)
-    return word
- 
-def get_noun(quantity):
-    """Return a randomly chosen noun.
-    If quantity is 1, this function will
-    return one of these ten single nouns:
-        "bird", "boy", "car", "cat", "child",
-        "dog", "girl", "man", "rabbit", "woman"
-    Otherwise, this function will return one of
-    these ten plural nouns:
-        "birds", "boys", "cars", "cats", "children",
-        "dogs", "girls", "men", "rabbits", "women"
-    Parameter
-        quantity: an integer that determines if
-            the returned noun is single or plural.
-    Return: a randomly chosen noun.
-    """
-    if quantity == 1:
-        nouns = [ "bird", "boy", "car", "cat", "child",
-        "dog", "girl", "man", "rabbit", "woman"]
-    else:
-        nouns = ["birds", "boys", "cars", "cats", "children",
-        "dogs", "girls", "men", "rabbits", "women"]
-    # Randomly choose and return a determiner.
-    noun = random.choice(nouns)
-    return noun
+    for can in cans:
+        name, radius, height, cost = can
+        volume = compute_volume(radius, height)
+        surface_area = compute_surface_area(radius, height)
+        cost_efficiency = compute_cost_efficiency(volume, cost)
+        can_efficiency = volume / surface_area
+        print(f'{name} volume = {volume:.2f} surface area = {surface_area:.2f} can efficiency = {can_efficiency:.2f} cost efficiency = ${cost_efficiency:.2f}')
 
-def get_verb(quantity, tense):
-    """Return a randomly chosen verb. If tense is "past",
-    this function will return one of these ten verbs:
-        "drank", "ate", "grew", "laughed", "thought",
-        "ran", "slept", "talked", "walked", "wrote"
-    If tense is "present" and quantity is 1, this
-    function will return one of these ten verbs:
-        "drinks", "eats", "grows", "laughs", "thinks",
-        "runs", "sleeps", "talks", "walks", "writes"
-    If tense is "present" and quantity is NOT 1,
-    this function will return one of these ten verbs:
-        "drink", "eat", "grow", "laugh", "think",
-        "run", "sleep", "talk", "walk", "write"
-    If tense is "future", this function will return one of
-    these ten verbs:
-        "will drink", "will eat", "will grow", "will laugh",
-        "will think", "will run", "will sleep", "will talk",
-        "will walk", "will write"
-    Parameters
-        quantity: an integer that determines if the
-            returned verb is single or plural.
-        tense: a string that determines the verb conjugation,
-            either "past", "present" or "future".
-    Return: a randomly chosen verb.
-    """
-    if tense == "past":
-        verbs = [ "drank", "ate", "grew", "laughed", "thought",
-        "ran", "slept", "talked", "walked", "wrote"]
-    if tense == "present" and quantity == 1:
-        verbs = [ "drank", "ate", "grew", "laughed", "thought",
-        "ran", "slept", "talked", "walked", "wrote"]
-    if tense == "present" and quantity!= 1:
-        verbs = [ "drink", "eat", "grow", "laugh", "think",
-        "run", "sleep", "talk", "walk", "write"]
-    else:
-        verbs = [ "will drink", "will eat", "will grow", "will laugh",
-        "will think", "will run", "will sleep", "will talk",
-        "will walk", "will write"]
-    # Randomly choose and return a determiner.
-    verb = random.choice(verbs)
-    return verb
+        if can_efficiency > best_can_efficiency:
+            best_can_efficiency = can_efficiency
+            name_best_can_efficiency = name
+        
+        if cost_efficiency < best_cost_efficiency:
+            best_cost_efficiency = cost_efficiency
+            name_best_cost_efficiency = name
+
+    print(f'Can {name_best_can_efficiency} has the best can efficiency at: {best_can_efficiency:.2f}')
+    print(f'Can {name_best_cost_efficiency} has the best cost efficiency at: ${best_cost_efficiency:.2f}')
+    
+
+def compute_volume(radius, height):
+    volume = math.pi * (radius **2) * height
+    return volume
+
+
+def compute_surface_area(radius, height):
+    surface_area = 2*math.pi * radius * (radius + height)
+    return surface_area
+
+def compute_cost_efficiency(volume, cost):
+    cost_efficiency = volume / cost
+    return cost_efficiency
 
 main()
+
+# def compute_storage_efficiency (volume, surface_area):
+
+    
