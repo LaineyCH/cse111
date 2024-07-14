@@ -11,27 +11,38 @@ CSE 111 Proposal for a Student Chosen Program
 
 1. What is the title of your program?
 
+    Quilt Yardage Calculator
+
 2. What real-world problem will your program address or help to solve?
+
+It will help quilter calculate how much fabric they need to buy based on the 
+standard quilt block they will be using (chosen from a selector menu), 
+the size of an individual block and the size (width and height) of the quilt.
 
 3. What will you learn from developing this program?
 
+How to write a program from scratch, including planning, implementing, testing and error handling;
+how to write effective functions; and how to use a GUI for user input and displaying results.
+
 4. What Python modules will your program use?
 
-    (Some examples are: csv, datetime, functools, matplotlib, math,
-    pandas, pytest, random, requests, and tkinter.)
+    csv, math, pytest, and tkinter.
 
 5. List the names of functions you will need?
 
-    (Remember that the most reusable functions don't get user input and
-    don't print results but instead have parameters and return a result.
-    Functions that get user input and print results are important and do
-    useful work but are not easily reusable.)
-
-    (Remember also that it's hard to test functions that get user input
-    and print results. It's easy to test functions that don't get user
-    input and don't print results but instead have parameters and return
-    a result. Therefore, you should write most of your program functions
-    to have parameters and return a result.)
+    main()
+    populate_main_window()
+    update_gui()
+    calculate()
+    clear()
+    create_dictionary()
+    get_block_data()
+    compute_yardage()
+    validate_int_entry()
 
 6. List the names of the test functions you will write.
+
+    test_create_dictionary()
+    test_get_block_data()
+    test_compute_yardage()
 
