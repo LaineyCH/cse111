@@ -8,7 +8,7 @@ as well as how much of each fabric, and the total yardage.
 """
 import csv
 import tkinter as tk
-from tkinter import Frame, Label, Button, OptionMenu, StringVar
+from tkinter import Frame, Label, Button, OptionMenu, StringVar, ttk
 
 
 def main():
@@ -33,6 +33,11 @@ def main():
 
 
 def read_csv(filename):
+    """ Open and read the csv file and save the contents in a dictionary 
+        Parameter
+            filename: the name of the csv file
+        Return: block_dict, the created dictionary
+    """
     KEY_INDEX = 0
     IMAGE_INDEX = 1
     NUM_COLOR_INDEX = 2
@@ -56,7 +61,7 @@ def read_csv(filename):
 
 def populate_main_window(frm_main, block_dict):
     """Populate the main window of this program.
-        Parameter
+        Parameters
             frm_main: the main frame
             block_dict: the dictionary of quilt blocks
         Return: nothing
@@ -67,7 +72,7 @@ def populate_main_window(frm_main, block_dict):
     selected_block.set("Log Cabin")  
 
     # Create an OptionMenu widget and label
-    lbl_block = Label(frm_main, text="Select Block:", width=25, anchor="e")
+    lbl_block = Label(frm_main, text="Select Block:", width=22, anchor="e")
     # set the list of options
     options = list(block_dict.keys())
     drop_down_menu = OptionMenu(frm_main, selected_block, *options)
@@ -82,13 +87,13 @@ def populate_main_window(frm_main, block_dict):
     lbl_image.image = img_block  # Keep a reference to avoid garbage collection
 
     # Create a label that displays "Finished Block Size:"
-    lbl_size = Label(frm_main, text="Finished Block Size:", width=25, anchor="e")
+    lbl_size = Label(frm_main, text="Finished Block Size:", width=22, anchor="e")
     # Create an integer entry box where the user will enter the block's whole inch size.
-    ent_inch_size = tk.Entry(frm_main, width=6)
+    ent_inch_size = tk.Entry(frm_main, width=4, justify='right')
     # Create a label that displays "inch"
-    lbl_inch_units = Label(frm_main, text="inch", width=6, anchor="w")
+    lbl_inch_units = Label(frm_main, text="inch", width=4, anchor="w")
     # Create an integer entry box where the user will enter the block's quarter inch size.
-    ent_quarter_size = tk.Entry(frm_main, width=6)
+    ent_quarter_size = tk.Entry(frm_main, width=2, justify='right')
     # Create a label that displays "/4 inch"
     lbl_quarter_units = Label(frm_main, text="/4 inch", width=6, anchor="w")
 
@@ -96,52 +101,55 @@ def populate_main_window(frm_main, block_dict):
     ent_quarter_size.insert(0, "0")
 
     # Create a label that displays "Quilt Width (Number of Blocks):"
-    lbl_width = Label(frm_main, text="Quilt Width (Number of Blocks):", width=25, anchor="e")
+    lbl_width = Label(frm_main, text="Quilt Width (Number of Blocks):", width=22, anchor="e")
     # Create an integer entry box where the user will enter the width.
-    ent_width = tk.Entry(frm_main, width=6)
+    ent_width = tk.Entry(frm_main, width=4, justify='right')
     # Create a label that displays "Quilt Height (Number of Blocks):"
-    lbl_height = Label(frm_main, text="Quilt Height (Number of Blocks):", width=25, anchor="e")
+    lbl_height = Label(frm_main, text="Quilt Height (Number of Blocks):", width=22, anchor="e")
     # Create an integer entry box where the user will enter the width.
-    ent_height = tk.Entry(frm_main, width=6)
+    ent_height = tk.Entry(frm_main, width=4, justify='right')
+
+    # Create a horizontal separator
+    separator = ttk.Separator(frm_main, orient='horizontal')
 
     # Create labels that will display the results.
     # number of blocks
-    lbl_blocks = Label(frm_main, text="Number of blocks:", width=25, anchor="e")
+    lbl_blocks = Label(frm_main, text="Number of blocks:", width=22, anchor="e")
     lbl_num_blocks = Label(frm_main, width=6)
     # quilt size
-    lbl_quilt_width = Label(frm_main, text="Quilt Width:", width=25, anchor="e")
+    lbl_quilt_width = Label(frm_main, text="Quilt Width:", width=22, anchor="e")
     lbl_width_inch = Label(frm_main, width=6)
     lbl_width_units = Label(frm_main, text="inches", width=5, anchor="w")
-    lbl_quilt_height = Label(frm_main, text="Quilt Height", width=25, anchor="e")
+    lbl_quilt_height = Label(frm_main, text="Quilt Height", width=22, anchor="e")
     lbl_height_inch = Label(frm_main, width=6)
     lbl_height_units = Label(frm_main, text="inches", width=5, anchor="w")
     # number of colors
-    lbl_colors = Label(frm_main, text="Minimum number of colors:", width=25, anchor="e")
+    lbl_colors = Label(frm_main, text="Minimum number of colors:", width=22, anchor="e")
     lbl_num_colors = Label(frm_main, width=6)
     # yardage
-    lbl_fabric_width = Label(frm_main, text="Yardage required for each color", width=25, anchor="e")
-    lbl_fabric_width2 = Label(frm_main, text="(width of fabric is 44 inches):", width=25, anchor="w")
-    lbl_color_1 = Label(frm_main, text="Color One:", width=25, anchor="e")
+    lbl_fabric_width = Label(frm_main, text="Yardage required for each color", width=22, anchor="e")
+    lbl_fabric_width2 = Label(frm_main, text="(width of fabric is 44 inches):", width=22, anchor="w")
+    lbl_color_1 = Label(frm_main, text="Color One:", width=22, anchor="e")
     lbl_color_1_size = Label(frm_main, width=6)
     lbl_1_inch = Label(frm_main, text="inches", width=5, anchor="w")
-    lbl_color_2 = Label(frm_main, text="Color Two:", width=25, anchor="e")
+    lbl_color_2 = Label(frm_main, text="Color Two:", width=22, anchor="e")
     lbl_color_2_size = Label(frm_main, width=6)
     lbl_2_inch = Label(frm_main, text="inches", width=5, anchor="w")
-    lbl_color_3 = Label(frm_main, text="Color Three:", width=25, anchor="e")
+    lbl_color_3 = Label(frm_main, text="Color Three:", width=22, anchor="e")
     lbl_color_3_size = Label(frm_main, width=6)
     lbl_3_inch = Label(frm_main, text="inches", width=5, anchor="w")
-    lbl_color_4 = Label(frm_main, text="Color Four:", width=25, anchor="e")
+    lbl_color_4 = Label(frm_main, text="Color Four:", width=22, anchor="e")
     lbl_color_4_size = Label(frm_main, width=6)
     lbl_4_inch = Label(frm_main, text="inches", width=5, anchor="w")
-    lbl_color_5 = Label(frm_main, text="Color Five:", width=25, anchor="e")
+    lbl_color_5 = Label(frm_main, text="Color Five:", width=22, anchor="e")
     lbl_color_5_size = Label(frm_main, width=6)
     lbl_5_inch = Label(frm_main, text="inches", width=5, anchor="w")
-    lbl_total_yardage = Label(frm_main, text="Total Yardage:", width=25, anchor="e")
+    lbl_total_yardage = Label(frm_main, text="Total Yardage:", width=22, anchor="e")
     lbl_total_size = Label(frm_main, width=6)
     lbl_total_inch = Label(frm_main, text="inches", width=5, anchor="w")
 
     # Create the Clear button
-    btn_clear = Button(frm_main, text="Clear")
+    btn_clear = Button(frm_main, text="Clear", width=15)
 
     # Create a label Add a label that acts as a status bar at the bottom of your GUI, 
     # displaying an error message in the status bar when the user enters invalid input.
@@ -151,20 +159,23 @@ def populate_main_window(frm_main, block_dict):
     # the select menu and image
     lbl_block.grid(row=0, column=0, padx=3, pady=3)
     drop_down_menu.grid(row=0, column=1, columnspan=4, padx=3, pady=3)
-    lbl_image.grid(row=0, column=5, padx=3, pady=3, columnspan=2, rowspan=3)
+    lbl_image.grid(row=1, column=1, padx=3, pady=3, columnspan=4)
 
     # the inputs
-    lbl_size.grid(row=3, column=0, padx=3, pady=3)
-    ent_inch_size.grid(row=3, column=1, padx=3, pady=3)
-    lbl_inch_units.grid(row=3, column=2, padx=3, pady=3)
-    ent_quarter_size.grid(row=3, column=3, padx=3, pady=3)
-    lbl_quarter_units.grid(row=3, column=4, padx=3, pady=3)
+    lbl_size.grid(row=2, column=0, padx=3, pady=3)
+    ent_inch_size.grid(row=2, column=1, padx=3, pady=3)
+    lbl_inch_units.grid(row=2, column=2, padx=3, pady=3)
+    ent_quarter_size.grid(row=2, column=3, padx=0, pady=3)
+    lbl_quarter_units.grid(row=2, column=4, padx=(0, 3), pady=3)
 
-    lbl_width.grid(row=4, column=0, padx=3, pady=3)
-    ent_width.grid(row=4, column=1, padx=3, pady=3)
+    lbl_width.grid(row=3, column=0, padx=3, pady=3)
+    ent_width.grid(row=3, column=1, padx=3, pady=3)
 
-    lbl_height.grid(row=5, column=0, padx=3, pady=3)
-    ent_height.grid(row=5, column=1, padx=3, pady=3)
+    lbl_height.grid(row=4, column=0, padx=3, pady=3)
+    ent_height.grid(row=4, column=1, padx=3, pady=3)
+
+    # the separator
+    separator.grid(row=5, column=0, columnspan=5, sticky='ew', pady=5)
 
     # the results
     # quilt size
@@ -212,13 +223,16 @@ def populate_main_window(frm_main, block_dict):
     lbl_total_inch.grid(row=17, column=2, padx=3, pady=3)
 
     # error message
-    lbl_error.grid(row=18, column=0, columnspan=5, padx=3, pady=3)
+    lbl_error.grid(row=18, column=0, columnspan=7, padx=3, pady=3)
 
     # Place the Clear button in the grid
-    btn_clear.grid(row=19, column=0, columnspan=5, padx=3, pady=3)
+    btn_clear.grid(row=19, column=0, columnspan=7, padx=3, pady=3)
 
 
-    def validate(event = None):
+    def validate_and_compute(event = None):
+        """ Validate all entries, and if all are valid, call compute
+        """
+        
         # Get the entry widget that triggered the event
         entry = event.widget
         entry_1_valid = validate_int_entry(ent_inch_size, 1, 20, ent_inch_size is entry, lbl_error)
@@ -348,12 +362,12 @@ def populate_main_window(frm_main, block_dict):
         # Set default value for ent_quarter_size
         ent_quarter_size.insert(0, "0")
 
-    # Bind the validate function to the entry boxes so that the validate function
+    # Bind the validate and compute function to the entry boxes so that the validate function
     # is called when the user changes the text in the entry box.
-    ent_inch_size.bind("<KeyRelease>", validate)
-    ent_quarter_size.bind("<KeyRelease>", validate)
-    ent_width.bind("<KeyRelease>", validate)
-    ent_height.bind("<KeyRelease>", validate)
+    ent_inch_size.bind("<KeyRelease>", validate_and_compute)
+    ent_quarter_size.bind("<KeyRelease>", validate_and_compute)
+    ent_width.bind("<KeyRelease>", validate_and_compute)
+    ent_height.bind("<KeyRelease>", validate_and_compute)
 
     # Bind the update_ui function to the drop-down menu so that the computer will
     # call the update_ui function when the user changes the selection in the drop-down menu.
