@@ -1,12 +1,11 @@
 """
 QUILT YARDAGE CALCULATOR
 This program takes input from a user, including finished block size (in whole and 
-quarter inches), and number of bocks (width and height)to make up the full quilt.
+quarter inches), and number of blocks (width and height) to make up the full quilt.
 It calculates how large the finished quilt will be, and, using a quilt dictionary
 (read from a csv file), it calculates the minimum number of colors of fabric are needed,
 as well as how much of each fabric, and the total yardage.
 """
-
 import csv
 import tkinter as tk
 from tkinter import Frame, Label, Button, OptionMenu, StringVar
@@ -68,11 +67,11 @@ def populate_main_window(frm_main, block_dict):
     selected_block.set("Log Cabin")  
 
     # Create an OptionMenu widget and label
-    lbl_block = Label(frm_main, text="Select Block:", width=20, anchor="e")
+    lbl_block = Label(frm_main, text="Select Block:", width=25, anchor="e")
     # set the list of options
     options = list(block_dict.keys())
     drop_down_menu = OptionMenu(frm_main, selected_block, *options)
-    drop_down_menu.config(width=20)
+    drop_down_menu.config(width=18)
     
     # Load images for the blocks
     initial_block = selected_block.get()
@@ -85,11 +84,11 @@ def populate_main_window(frm_main, block_dict):
     # Create a label that displays "Finished Block Size:"
     lbl_size = Label(frm_main, text="Finished Block Size:", width=25, anchor="e")
     # Create an integer entry box where the user will enter the block's whole inch size.
-    ent_inch_size = tk.Entry(frm_main, width=5)
+    ent_inch_size = tk.Entry(frm_main, width=6)
     # Create a label that displays "inch"
     lbl_inch_units = Label(frm_main, text="inch", width=6, anchor="w")
     # Create an integer entry box where the user will enter the block's quarter inch size.
-    ent_quarter_size = tk.Entry(frm_main, width=5)
+    ent_quarter_size = tk.Entry(frm_main, width=6)
     # Create a label that displays "/4 inch"
     lbl_quarter_units = Label(frm_main, text="/4 inch", width=6, anchor="w")
 
@@ -99,11 +98,11 @@ def populate_main_window(frm_main, block_dict):
     # Create a label that displays "Quilt Width (Number of Blocks):"
     lbl_width = Label(frm_main, text="Quilt Width (Number of Blocks):", width=25, anchor="e")
     # Create an integer entry box where the user will enter the width.
-    ent_width = tk.Entry(frm_main, width=5)
+    ent_width = tk.Entry(frm_main, width=6)
     # Create a label that displays "Quilt Height (Number of Blocks):"
     lbl_height = Label(frm_main, text="Quilt Height (Number of Blocks):", width=25, anchor="e")
     # Create an integer entry box where the user will enter the width.
-    ent_height = tk.Entry(frm_main, width=5)
+    ent_height = tk.Entry(frm_main, width=6)
 
     # Create labels that will display the results.
     # number of blocks
@@ -151,8 +150,8 @@ def populate_main_window(frm_main, block_dict):
     # Layout all the labels, entry boxes, and buttons in a grid.
     # the select menu and image
     lbl_block.grid(row=0, column=0, padx=3, pady=3)
-    drop_down_menu.grid(row=0, column=1, columnspan=2, padx=3, pady=3)
-    lbl_image.grid(row=0, column=3, padx=3, pady=3, columnspan=2, rowspan=3)
+    drop_down_menu.grid(row=0, column=1, columnspan=4, padx=3, pady=3)
+    lbl_image.grid(row=0, column=5, padx=3, pady=3, columnspan=2, rowspan=3)
 
     # the inputs
     lbl_size.grid(row=3, column=0, padx=3, pady=3)
@@ -186,7 +185,7 @@ def populate_main_window(frm_main, block_dict):
 
     lbl_fabric_width.grid(row=10, column=0, padx=3, pady=3)
 
-    lbl_fabric_width2.grid(row=10, column=1, columnspan=2, padx=3, pady=3)
+    lbl_fabric_width2.grid(row=10, column=1, columnspan=4, padx=3, pady=3)
 
     lbl_color_1.grid(row=12, column=0, padx=3, pady=3)
     lbl_color_1_size.grid(row=12, column=1, padx=3, pady=3)
@@ -222,32 +221,14 @@ def populate_main_window(frm_main, block_dict):
     def validate(event = None):
         # Get the entry widget that triggered the event
         entry = event.widget
-        entry_1_valid = validate_int_entry(ent_inch_size, 1, 20, ent_inch_size is entry)
-        entry_2_valid = validate_int_entry(ent_quarter_size, 0, 3, ent_quarter_size is entry)
-        entry_3_valid = validate_int_entry(ent_width, 1, 100, ent_width is entry)
-        entry_4_valid = validate_int_entry(ent_height, 1, 100, ent_height is entry)
+        entry_1_valid = validate_int_entry(ent_inch_size, 1, 20, ent_inch_size is entry, lbl_error)
+        entry_2_valid = validate_int_entry(ent_quarter_size, 0, 3, ent_quarter_size is entry, lbl_error)
+        entry_3_valid = validate_int_entry(ent_width, 1, 100, ent_width is entry, lbl_error)
+        entry_4_valid = validate_int_entry(ent_height, 1, 100, ent_height is entry, lbl_error)
 
         if entry_1_valid and entry_2_valid and entry_3_valid and entry_4_valid:
             lbl_error.config(text="")
             calculate()
-
-
-    def validate_int_entry(entry, min_value, max_value, modified: bool):
-        try:
-            v = entry.get()
-            if v == "":
-                return False
-            value = int(v)
-            if min_value <= value <= max_value:
-                return True
-            else:
-                if modified:
-                    lbl_error.config(text=f"Value in '{entry.get()}' must be between {min_value} and {max_value}.")
-                return False
-        except ValueError:
-            if modified:
-                lbl_error.config(text=f"Invalid input in '{entry.get()}'. Please enter an integer.")
-            return False
 
 
     # This function will be called if all 4 entries are input and valid.
@@ -386,6 +367,24 @@ def populate_main_window(frm_main, block_dict):
 
     # Give the keyboard focus to the first entry box.
     ent_inch_size.focus()
+
+
+def validate_int_entry(entry, min_value, max_value, modified: bool, lbl_error):
+    try:
+        v = entry.get()
+        if v == "":
+            return False
+        value = int(v)
+        if min_value <= value <= max_value:
+            return True
+        else:
+            if modified:
+                lbl_error.config(text=f"Value is '{entry.get()}'. Must be between {min_value} and {max_value}.")
+            return False
+    except ValueError:
+        if modified:
+            lbl_error.config(text=f"Invalid input: '{entry.get()}'. Please enter an integer.")
+        return False
 
 
 def compute_yardage(block_size, number_blocks, number_colors, block_color_prop_list):
