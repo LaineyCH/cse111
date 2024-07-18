@@ -55,6 +55,12 @@ def test_compute_yardage():
     assert yardage_list[1] == approx(45.00, abs=0.01)
     assert yardage == approx(90.00, abs=0.01)
 
+    yardage_list, yardage = compute_yardage(20, 10000, 2, [0.56, 0.56])
+    assert len(yardage_list) == 2
+    assert yardage_list[0] == approx(50909.09, abs=0.01)
+    assert yardage_list[1] == approx(50909.09, abs=0.01)
+    assert yardage == approx(101818.18, abs=0.01)
+
     yardage_list, yardage = compute_yardage(10, 36, 5, [0.1,0.39,0.39,0.41,0.41])
     assert len(yardage_list) == 5
     assert yardage_list[0] == approx(8.18, abs=0.01)

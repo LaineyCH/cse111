@@ -1,0 +1,55 @@
+Second Report for a Student Chosen Project
+
+Do the following:
+
+1. In the table below, list the dates, amount of time spent, and
+description of the work that you did on your project. Follow the example
+that is in the first row of the table below. Include the time you spent
+doing any of the following:
+    a. discussing your project with your teacher, tutor, or fellow students
+    b. researching by reading articles and watching applicable videos
+    c. designing your project by drawing diagrams and other applicable documents
+    d. writing experimental code
+    d. writing code for your project
+    e. writing test functions
+    f. debugging your code
+    g. any other activity that helped you complete your project
+
+=============Example====================
+            Time Spent
+   Date       (hours)   Description of Work
+----------  ----------  -------------------------
+2021-12-03      2.5     Wrote two program functions and two test functions
+2021-12-03      .5      Watched video on 
+=============Example====================
+
+2024-07-10      2.75    Researched Tkinter and wrote a practise program to try my GUI knowledge.
+                        Began project plan. Found out how to create a drop down select menu and have
+                        it update the ui upon selection.
+2024-07-11      3       Coded a select menu into my practise program. Researched how to include images in
+                        the ui and added them to my practise program. Drew up a plan for my program,
+                        including GUI sketch. Created png images for my project.
+2024-07-12      3.25    Wrote pseudo code for all the functions, wrote the main function, the read_csv function,
+                        and typed up the labels, entries and buttons in the populate_main_window function
+                        as well as the clear function, etc.
+                        Wrote the code for the select menu as well as the images. Wrote the update_ui function.
+                        Lots of debugging.
+2024-07-13      1.5     Researched how to implement tkinter Entry widgets, watched a video. Wrote the code
+                        for the Entry widgets in my project. Began validation code.
+2024-07-14      1.5     Researched how to implement the validation correctly. Worked on the validation functions.
+2024-07-15      3.75    Wrote the compute_yardage function and created the grid for all the ui elements in the
+                        populate_main_window function. Worked on other functions as needed. Debugging.
+2024-07-16      3.25    Reworked validation code to make it more responsive, and get error messages to work correctly.
+                        Began work on the test program for two functions. Researched "Mocking for unit testing". Rewrote
+                        the clear function and updated other functions as needed. Debugging.
+2024-07-17      3.75    Finished test program. Had to move a function out of the populate_main_window function and make it
+                        a top-level function to be testable, which makes it more modular anyway. Figured out how to allow 
+                        update_ui (upon change of selection) to call validate_for_compute, without a KeyRelease event,
+                        and maintain the integrity of the validation. Updated other functions as needed, including making
+                        the clear function smarter (to work with new update_ui capabilities).
+2024-07-18      2       Made some small code refinements, updated documentation, and polished the look of the ui.
+
+
+2. In Canvas, submit this completed text file, your Python program, your
+Python test file, and any project data files such as .txt and .csv files and
+link to video walkthrough if needed.

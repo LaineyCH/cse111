@@ -4,7 +4,7 @@ This program takes input from a user, including finished block size (in whole an
 quarter inches), and number of blocks (width and height) to make up the full quilt.
 It calculates how large the finished quilt will be, and, using a quilt dictionary
 (read from a csv file), it calculates the minimum number of colors of fabric are needed,
-as well as how much of each fabric, and the total yardage.
+as well the yardage each fabric color, and the total yardage.
 """
 import csv
 import tkinter as tk
@@ -128,22 +128,22 @@ def populate_main_window(frm_main, block_dict):
     lbl_fabric_width = Label(frm_main, text="Yardage required for each color", width=22, anchor="e")
     lbl_fabric_width2 = Label(frm_main, text="(width of fabric is 44 inches):", width=22, anchor="w")
     lbl_color_1 = Label(frm_main, text="Color One:", width=22, anchor="e")
-    lbl_color_1_size = Label(frm_main, width=6)
+    lbl_color_1_size = Label(frm_main, width=7)
     lbl_1_inch = Label(frm_main, text="inches", width=5, anchor="w")
     lbl_color_2 = Label(frm_main, text="Color Two:", width=22, anchor="e")
-    lbl_color_2_size = Label(frm_main, width=6)
+    lbl_color_2_size = Label(frm_main, width=7)
     lbl_2_inch = Label(frm_main, text="inches", width=5, anchor="w")
     lbl_color_3 = Label(frm_main, text="Color Three:", width=22, anchor="e")
-    lbl_color_3_size = Label(frm_main, width=6)
+    lbl_color_3_size = Label(frm_main, width=7)
     lbl_3_inch = Label(frm_main, text="inches", width=5, anchor="w")
     lbl_color_4 = Label(frm_main, text="Color Four:", width=22, anchor="e")
-    lbl_color_4_size = Label(frm_main, width=6)
+    lbl_color_4_size = Label(frm_main, width=7)
     lbl_4_inch = Label(frm_main, text="inches", width=5, anchor="w")
     lbl_color_5 = Label(frm_main, text="Color Five:", width=22, anchor="e")
-    lbl_color_5_size = Label(frm_main, width=6)
+    lbl_color_5_size = Label(frm_main, width=7)
     lbl_5_inch = Label(frm_main, text="inches", width=5, anchor="w")
     lbl_total_yardage = Label(frm_main, text="Total Yardage:", width=22, anchor="e")
-    lbl_total_size = Label(frm_main, width=6)
+    lbl_total_size = Label(frm_main, width=7)
     lbl_total_inch = Label(frm_main, text="inches", width=5, anchor="w")
 
     # create the Clear button
@@ -393,7 +393,7 @@ def populate_main_window(frm_main, block_dict):
 def validate_int_entry(entry, min_value, max_value, modified: bool, lbl_error):
     """Validates user input, ensuriing it is of type int, and within a specified range.
     Parameters
-        entry: the widget for which the velue is to be validated
+        entry: the widget for which the value is to be validated
         min_value: minimum value for the valid range
         max_value: maximun value for th evalid range
         modified: boolean, True if the validation is for the event triggering widget, False if not
