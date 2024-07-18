@@ -1,27 +1,7 @@
-from quilt_yardage import compute_yardage, read_csv, validate_int_entry
+from quilt_yardage import read_csv, compute_yardage, validate_int_entry
 import pytest
 from pytest import approx
 from unittest.mock import Mock, mock_open, patch
-
-def test_compute_yardage():
-    """Verify that the compute_yardage function returns correct results.
-    Parameters: none
-    Return: nothing
-    """
-    yardage_list, yardage = compute_yardage(6, 100, 2, [0.55, 0.55])
-    assert len(yardage_list) == 2
-    assert yardage_list[0] == approx(45.00, abs=0.01)
-    assert yardage_list[1] == approx(45.00, abs=0.01)
-    assert yardage == approx(90.00, abs=0.01)
-
-    yardage_list, yardage = compute_yardage(10, 36, 5, [0.1,0.39,0.39,0.41,0.41])
-    assert len(yardage_list) == 5
-    assert yardage_list[0] == approx(8.18, abs=0.01)
-    assert yardage_list[1] == approx(31.91, abs=0.01)
-    assert yardage_list[2] == approx(31.91, abs=0.01)
-    assert yardage_list[3] == approx(33.55, abs=0.01)
-    assert yardage_list[4] == approx(33.55, abs=0.01)
-    assert yardage == approx(139.10, abs=0.01)
 
 
 def test_read_csv():
@@ -62,6 +42,27 @@ block name,file name,2,3,4"""
         "block name": ["file name", 2, ["3", "4"]]
     }
     assert result == expected
+
+
+def test_compute_yardage():
+    """Verify that the compute_yardage function returns correct results.
+    Parameters: none
+    Return: nothing
+    """
+    yardage_list, yardage = compute_yardage(6, 100, 2, [0.55, 0.55])
+    assert len(yardage_list) == 2
+    assert yardage_list[0] == approx(45.00, abs=0.01)
+    assert yardage_list[1] == approx(45.00, abs=0.01)
+    assert yardage == approx(90.00, abs=0.01)
+
+    yardage_list, yardage = compute_yardage(10, 36, 5, [0.1,0.39,0.39,0.41,0.41])
+    assert len(yardage_list) == 5
+    assert yardage_list[0] == approx(8.18, abs=0.01)
+    assert yardage_list[1] == approx(31.91, abs=0.01)
+    assert yardage_list[2] == approx(31.91, abs=0.01)
+    assert yardage_list[3] == approx(33.55, abs=0.01)
+    assert yardage_list[4] == approx(33.55, abs=0.01)
+    assert yardage == approx(139.10, abs=0.01)
 
 
 def test_validate_int_entry():

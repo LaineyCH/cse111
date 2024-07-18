@@ -1,9 +1,9 @@
 Block Name,Image File Name,Number of Colours,List of proportion of each colour (relative to block area)
 Log Cabin,log_cabin.png,5,0.1,0.39,0.39,0.41,0.41
-Pinwheel,pinwheel.png,2,0.55,0.55
+Pinwheel,pinwheel.png,2,0.56,0.56
 Four Patch,four_patch.png,2,0.55,0.55
 Nine Patch,nine_patch.png,3,0.35,0.35,0.35
-Half Square Triangle,half_square.png,2,0.55,0.55
+Half Square Triangle,half_square.png,2,0.52,0.52
 Hour Glass,hour_glass.png,2,0.55,0.55
 Churn Dash,churn_dash.png,3,0.2,0.55,0.6
 Bear Paw,bear_paw.png,3,0.5,0.55,0.6
